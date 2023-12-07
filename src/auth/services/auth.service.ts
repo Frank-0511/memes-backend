@@ -8,9 +8,9 @@ import {
 
 import { JwtService } from '@nestjs/jwt';
 import { PayloadToken } from '../models/token.model';
-import { User } from 'src/users/user.entity';
+import { User } from '../../users/user.entity';
 import { UserLogin } from '../models/login.model';
-import { UsersService } from 'src/users/services/users.service';
+import { UsersService } from '../../users/services/users.service';
 
 @Injectable()
 export class AuthService {

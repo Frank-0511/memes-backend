@@ -8,7 +8,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { AuthService } from '../services/auth.service';
-import { User } from 'src/users/user.entity';
+import { User } from '../../users/user.entity';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthSwagger } from './auth.swagger';
 
