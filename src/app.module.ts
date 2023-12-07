@@ -9,6 +9,7 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import config from './config';
 import { environments } from './environments';
+import { MemesModule } from './memes/memes.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { environments } from './environments';
     UsersModule,
     AuthModule,
     DatabaseModule,
+    MemesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

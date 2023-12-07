@@ -1,3 +1,4 @@
+import { memesToSeed, seedMeme } from './meme-seed';
 import { seedUser, usersToSeed } from './user-seed';
 
 // index.ts
@@ -18,6 +19,14 @@ const seedDatabase = async () => {
       }),
     );
     console.log('Users seeded:', seededUsers);
+
+    const seededMemes = await Promise.all(
+      memesToSeed.map(async (memeData) => {
+        const meme = await seedMeme(memeData);
+        return connection.manager.save(meme);
+      }),
+    );
+    console.log('Memes seeded:', seededMemes);
 
     console.log('Seeders ejecutados correctamente');
   } catch (error) {
