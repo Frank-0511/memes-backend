@@ -12,10 +12,6 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
-  listUsers(): Promise<User[]> {
-    return this.userRepository.find();
-  }
-
   async createUser(user: CreateUserDto): Promise<User> {
     const newUser = this.userRepository.create(user);
     const passwordHash = await bcrypt.hash(
