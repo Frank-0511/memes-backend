@@ -56,6 +56,38 @@ $ pnpm seed
 $ pnpm run test
 ```
 
+## Estructura de carpetas
+  | Todo se encuentra dentro de la carpeta src
+  | aqui se encuentra separado por las secciones que eh usado
+  | en este caso son auth, database, memes, page, seeders y users
+  | donde auth, memes y users tienen sub carpetas
+  | las cuales son controllers, services, models, guard, strategies, exepcions y decorators
+
+## Dependencias utilizadas
+- nestjs
+- bcrypt
+- class-transformer
+- class-validator
+- dotenv
+- joi
+- mysql2
+- passport
+- passport-jwt
+- passport-local
+- reflect-metadata
+- rxjs
+- swagger-ui-express
+- typeorm
+
+## Mecanismo de auten4cación implementado
+| Se utilizo passport para el mecanismo de autenticacion
+| ademas de jwt para crear la sesion del usuario
+| en el archivo jwt.strategy.ts esta la configuracion del jwt
+| el cual sirvio para ser agregado usado AuthGuard en el controlador de memes
+| y asi poder proteger el api de obtener la lista de memes
+| que solo devuelve la informacion si es que se le pasa el token.
+
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
