@@ -1,7 +1,7 @@
 import { User } from 'src/users/user.entity';
 
 export interface UserLogin extends User {
-  access_token: string;
+  token: string;
 }
 
 export type LoginRequest = {
@@ -10,7 +10,7 @@ export type LoginRequest = {
 };
 
 export type LoginResponse = {
-  access_token: string;
+  token: string;
   email: string;
   name: string;
 };

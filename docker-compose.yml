@@ -1,15 +1,15 @@
 version: '3.9'
 services:
-  # backend:
-  #   build: .
-  #   image: memes-backend
-  #   container_name: memes-backend
-  #   ports:
-  #     - ${BACKEND_PORT_EXTERNAL}:${BACKEND_PORT_INTERNAL}
-  #   links:
-  #     - database
-  #   environment:
-  #     - NODE_ENV=${NODE_ENV}
+  backend:
+    build: .
+    image: memes-backend
+    container_name: memes-backend
+    ports:
+      - ${BACKEND_PORT_EXTERNAL}:${BACKEND_PORT_INTERNAL}
+    links:
+      - database
+    environment:
+      - NODE_ENV=${NODE_ENV}
 
   database:
     image: mysql:8.2

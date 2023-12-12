@@ -29,7 +29,7 @@ export const AuthSwagger = {
         schema: {
           type: 'object',
           properties: {
-            access_token: {
+            token: {
               type: 'string',
               description: "The user's JWT token",
             },
