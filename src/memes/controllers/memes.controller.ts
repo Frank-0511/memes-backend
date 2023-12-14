@@ -1,10 +1,12 @@
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import {
   BadRequestException,
+  Body,
   Controller,
   Get,
   HttpCode,
   HttpStatus,
+  Post,
   Query,
   UseGuards,
   ValidationPipe,
@@ -16,6 +18,7 @@ import { PageOptionsDto } from 'src/page/dtos/page-options.dto';
 import { PageDto } from 'src/page/dtos/page.dto';
 import { ValidationError } from 'class-validator';
 import { AuthGuard } from '@nestjs/passport';
+import { CreateMemeDto } from '../meme.dto';
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('meme')
@@ -49,5 +52,21 @@ export class MemeController {
       console.error('Error en el controlador:', error);
       throw error;
     }
+  }
+
+  @Post()
+  @ApiOperation({
+    summary: 'Create a meme',
+    description: 'Create a meme',
+    tags: ['Memes'],
+  })
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    description: 'The meme has been created successfully',
+    type: Meme,
+  })
+  @HttpCode(HttpStatus.CREATED)
+  create(@Body() payload: CreateMemeDto): Promise<Meme> {
+    return this.memesService.createMeme(payload);
   }
 }

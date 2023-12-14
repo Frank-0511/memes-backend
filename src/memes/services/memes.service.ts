@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { PageOptionsDto } from 'src/page/dtos/page-options.dto';
 import { PageMetaDto } from 'src/page/dtos/page-meta.dto';
 import { PageDto } from 'src/page/dtos/page.dto';
+import { CreateMemeDto } from '../meme.dto';
 
 @Injectable()
 export class MemeService {
@@ -27,6 +28,16 @@ export class MemeService {
       return new PageDto(entities, pageMetaDto);
     } catch (error) {
       console.error('Error en findAll:', error);
+      throw new Error('Ocurrió un error al procesar la solicitud.');
+    }
+  }
+
+  async createMeme(meme: CreateMemeDto): Promise<Meme> {
+    try {
+      const newMeme = this.memeRepository.create(meme);
+      return await this.memeRepository.save(newMeme);
+    } catch (error) {
+      console.error('Error en create:', error);
       throw new Error('Ocurrió un error al procesar la solicitud.');
     }
   }

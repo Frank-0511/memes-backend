@@ -10,6 +10,9 @@ services:
       - database
     environment:
       - NODE_ENV=${NODE_ENV}
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
 
   database:
     image: mysql:8.2

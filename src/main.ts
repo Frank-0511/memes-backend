@@ -1,10 +1,13 @@
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestFactory, Reflector } from '@nestjs/core';
-import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['debug', 'error', 'warn'],
+  });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -15,6 +18,11 @@ async function bootstrap() {
     }),
   );
   app.enableCors();
+  if ((module as any).hot) {
+    // HMR lógica
+    (module as any).hot.accept();
+    (module as any).hot.dispose(() => app.close());
+  }
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   const config = new DocumentBuilder()
